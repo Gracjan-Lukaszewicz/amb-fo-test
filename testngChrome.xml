@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" parallel="methods" verbose="10" thread-count="2">
+    <test name="test1">
+        <parameter name="configuration" value="default"/> <!-- default -->
+        <parameter name="environment" value="local"/> <!-- local / remote -->
+        <parameter name="browser" value="chrome"/> <!-- chrome / firefox / edge / opera -->
+        <parameter name="logs" value="fail"/> <!-- fail / fail_skip / fail_skip_pass / fail_pass -->
+        <parameter name="screenshots" value="afterFail_method"/> <!-- after_method / afterFail_method / before_after_method / before_afterFail_method -->
+        <classes>
+            <class name="test.BaseLoginTest"/>
+        </classes>
+    </test>
+</suite>
