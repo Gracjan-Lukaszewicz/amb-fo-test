@@ -52,7 +52,6 @@ public class GridLoginTest {
         logger.error("Halo jestem tutaj");
         Assert.assertEquals(driver.getTitle(), "Kokpit - TestArena Demo");
 
-//        driver.close();
         driver.quit();
 
     }

@@ -6,8 +6,6 @@ import Core.Configuration.DriverConfiguration.DriverConfiguration;
 import Core.Configuration.DriverConfiguration.DriverConfigurationFactory;
 import Core.Utils.DefaultScreenshot;
 import Pages.LoginPage;
-import Pages.MainPage;
-import Pages.TestBasePage;
 import Utils.Assert.CustomAssertion;
 import Utils.Screenshot.Screenshot;
 import org.openqa.selenium.WebDriver;
@@ -28,15 +26,11 @@ public abstract class DefaultTest
 
     public CustomAssertion customAssertion;
     public LoginPage loginPage;
-    public MainPage mainPage;
-    public TestBasePage testBasePage;
 
     @BeforeClass
     public void setUpClass() {
 
         loginPage = new LoginPage(driver);
-        mainPage = new MainPage(driver);
-        testBasePage = new TestBasePage(driver);
     }
 
 
