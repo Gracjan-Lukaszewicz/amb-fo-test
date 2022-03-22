@@ -1,46 +1,51 @@
 package test;
 
-import Core.Tests.DefaultTest;
+import Pages.LoginPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 @Listeners(Utils.ListenerTest.class)
-public class BaseLoginTest extends DefaultTest {
+public class BaseLoginTest {
 
     private static final Logger logger = LogManager.getLogger(BaseLoginTest.class.getName());
+    WebDriver driver;
 
-    //    @Test(retryAnalyzer = MyTestsRetry.class)
-//    @Test(enabled = false)
+    @BeforeMethod
+    public void setUpMethod() {
 
-//    @DataProvider(name = "providerName")
-//    public Object[][] providerData() {
-//        return new Object[][]
-//                {{"administrator@testarena.pl","sumXQQ72$L"},{"data2-1","data2-2"}};
-//    }
-
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+    }
 
     @Test
-//    @Parameters({"login", "pass"})
-    public void loginTest() {
+
+    public void loginTest() throws InterruptedException {
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 
         driver.manage().deleteAllCookies();
 
-        driver.get("http://demo.testarena.pl/zaloguj");
+        driver.get("https://player.pl/");
 
-        driver.findElement(By.id("email")).sendKeys("administrator@testarena.pl");
-        driver.findElement(By.id("password")).sendKeys("sumXQQ72$L");
-        driver.findElement(By.id("login")).click();
+        driver.switchTo().frame(driver.findElement(By.className("__ipPerunElement")));
+        driver.findElement(By.xpath("//p[@class='__ipPopupWebPushAsk']")).click();
+        driver.switchTo().parentFrame();
+        driver.findElement(By.id("onetrust-accept-btn-handler")).click();
 
-        Assert.assertEquals(driver.getTitle(), "Kokpit - TestArena Demo");
+        Assert.assertEquals(driver.getTitle(), "Seriale, Filmy, Programy, kanały TV Online - wejdź i oglądaj na Player.pl");
 
         driver.quit();
     }
