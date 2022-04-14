@@ -5,10 +5,14 @@ import Core.Configuration.BaseConfiguration.BaseConfigurationFactory;
 import Core.Configuration.DriverConfiguration.DriverConfiguration;
 import Core.Configuration.DriverConfiguration.DriverConfigurationFactory;
 import Core.Utils.DefaultScreenshot;
+import Pages.Go3.Go3LoggingPage;
 import Pages.LoginPage;
+import Pages.Player.PlayerLandingPage;
 import Utils.Assert.CustomAssertion;
 import Utils.Screenshot.Screenshot;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import java.io.IOException;
@@ -26,11 +30,15 @@ public abstract class DefaultTest
 
     public CustomAssertion customAssertion;
     public LoginPage loginPage;
+    public Go3LoggingPage go3LoggingPage;
+    public PlayerLandingPage playerLandingPage;
 
     @BeforeClass
     public void setUpClass() {
 
         loginPage = new LoginPage(driver);
+        go3LoggingPage = new Go3LoggingPage(driver);
+        playerLandingPage = new PlayerLandingPage(driver);
     }
 
 
@@ -45,8 +53,8 @@ public abstract class DefaultTest
         customAssertion = new CustomAssertion(driver);
         screenshot = new Screenshot(driver, baseConfiguration);
 
-        driver.get(baseConfiguration.getBaseProtocol() + baseConfiguration.getBaseAuthorizationUsername() + ":"
-                + baseConfiguration.getBaseAuthorizationPassword() + "@" + baseConfiguration.getBaseURL());
+//        driver.get(baseConfiguration.getBaseProtocol() + baseConfiguration.getBaseAuthorizationUsername() + ":"
+//                + baseConfiguration.getBaseAuthorizationPassword() + "@" + baseConfiguration.getBaseURL());
 
 
     }
