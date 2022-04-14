@@ -41,6 +41,8 @@ public class Go3Test extends DefaultTest {
 
 		go3LoggingPage.clickKids().clickAdult().assertSubscribeButton();
 
+		System.out.println("all git gud");
+
 	}
 
 }

@@ -1,2 +1,2 @@
-# selenium-for-beginners
-Sample project for training: "Selenium WebDriver dla początkujących"
+# Go3 test
+Uczymy sie robic automaty na go3 uat :)
